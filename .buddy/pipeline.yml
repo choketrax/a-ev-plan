@@ -1,0 +1,11 @@
+actions:
+  - name: Deploy to VPS
+    trigger_time: ON_PUSH
+    action_type: SSH
+    ssh_key: $BUDDY_SSH_PRIVATE_KEY
+    login: root
+    host: your-vps-ip
+    script:
+      - cd /opt/a-ev-plan || git clone https://github.com/choketrax/a-ev-plan.git /opt/a-ev-plan && cd /opt/a-ev-plan
+      - git pull
+      - docker-compose up -d
